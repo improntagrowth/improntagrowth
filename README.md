@@ -35,3 +35,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # improntagrowth
+
+
+Tengo grabada la charla con el cliente viendo las correcciones una a una. Es un video de una 55 minutos,  Vos lo podés procesar y desglosar y ver qué correcciones debemos aplicar sobre la página. el video esta en clients/improntagrowth/charla-correcciones.mp4
+Además de eso, el cliente me pasó un documento con las correcciones de los copies, correcciones de los copies, estan en clients/improntagrowth/copy/source-docs/Optimizaciones/Landing_Impronta_Optimizada_v2.md
