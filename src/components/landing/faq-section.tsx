@@ -1,5 +1,45 @@
+"use client";
+
+import { useId, useState } from "react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { faq } from "@/content/landing";
+
+type FaqItemProps = {
+  answer: string;
+  question: string;
+};
+
+function FaqItem({ answer, question }: FaqItemProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const panelId = useId();
+
+  return (
+    <article className="py-5">
+      <button
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={panelId}
+        onClick={() => setIsOpen((current) => !current)}
+        className="flex w-full items-start justify-between gap-5 text-left text-xl leading-7 tracking-[-0.035em] text-foreground md:text-2xl"
+      >
+        <span>{question}</span>
+        <span className={`mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm transition duration-300 ${isOpen ? "rotate-45 border-voltage text-foreground" : "border-mist text-sage"}`}>
+          +
+        </span>
+      </button>
+      <div
+        id={panelId}
+        className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+      >
+        <div className="overflow-hidden">
+          <p className="max-w-2xl pb-1 pt-4 text-base leading-7 text-bark md:text-lg md:leading-8">
+            {answer}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export function FaqSection() {
   return (
@@ -19,17 +59,7 @@ export function FaqSection() {
         <div className="divide-y divide-mist border-y border-mist">
           {faq.items.map((item, index) => (
             <ScrollReveal key={item.question} delay={index * 0.035}>
-              <details className="group py-5">
-                <summary className="flex list-none items-start justify-between gap-5 text-xl leading-7 tracking-[-0.035em] text-foreground marker:hidden md:text-2xl">
-                  <span>{item.question}</span>
-                  <span className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-mist text-sm text-sage transition group-open:rotate-45 group-open:border-voltage group-open:text-foreground">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-bark md:text-lg md:leading-8">
-                  {item.answer}
-                </p>
-              </details>
+              <FaqItem answer={item.answer} question={item.question} />
             </ScrollReveal>
           ))}
         </div>
