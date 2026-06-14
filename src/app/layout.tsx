@@ -5,13 +5,45 @@ import { GoogleTagManager } from '@/components/google-tag-manager'
 import { SiteLoader } from '@/components/site-loader'
 import './globals.css'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://improntagrowth.com'
+const title = 'Impronta Growth'
+const description =
+  'Escalá tu negocio a US$10.000-30.000 al mes sin volverte viral ni trabajar 12 horas por día.'
+const previewImage = '/brand/impronta-growth-google-index.png'
+
 export const metadata: Metadata = {
-  title: 'Impronta Growth',
-  description:
-    'Escalá tu negocio a US$10.000-30.000 al mes sin volverte viral ni trabajar 12 horas por día.',
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  alternates: {
+    canonical: '/',
+  },
   icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
+    icon: previewImage,
+    shortcut: previewImage,
+    apple: previewImage,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_AR',
+    url: '/',
+    siteName: title,
+    title,
+    description,
+    images: [
+      {
+        url: previewImage,
+        width: 512,
+        height: 512,
+        alt: 'Impronta Growth',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title,
+    description,
+    images: [previewImage],
   },
 }
 
