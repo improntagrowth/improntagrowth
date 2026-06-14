@@ -76,7 +76,7 @@ export default function AgendaPage() {
             <CalendlyInlineWidget
               url={agendaEmbedUrl}
               loadStrategy="afterInteractive"
-              className="h-[1750px] w-full overflow-hidden rounded-[18px] border border-background/10 bg-background text-foreground sm:h-[1500px] lg:h-[calc(100svh-245px)] lg:min-h-[600px] xl:h-[calc(100svh-230px)]"
+              className="h-[760px] w-full overflow-auto rounded-[18px] border border-background/10 bg-background text-foreground sm:h-[820px] lg:h-[calc(100svh-245px)] lg:min-h-[600px] lg:overflow-hidden xl:h-[calc(100svh-230px)]"
             />
           </div>
         </ScrollReveal>
