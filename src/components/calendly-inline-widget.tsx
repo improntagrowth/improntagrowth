@@ -159,7 +159,7 @@ export function CalendlyInlineWidget({
               Cargando agenda
             </p>
             <p className="max-w-sm text-sm leading-6 text-sage">
-              El calendario se carga cuando estás cerca para no frenar el video ni el primer contenido.
+              Estamos preparando los horarios disponibles para que puedas elegir el momento que mejor te quede.
             </p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { TrackedLink } from '@/components/analytics'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { hero } from '@/content/landing'
+import { CtaLabel } from '@/components/landing/cta-label'
 import { VslVideo } from '@/components/landing/vsl-video'
 
 const titleHighlight = 'US$10.000-30.000'
@@ -34,9 +35,9 @@ export function HeroSection() {
             leadIntent
             trackingLabel={hero.cta}
             trackingLocation='hero_desktop'
-            className='cta-primary hidden max-w-full whitespace-normal rounded-[10px] px-8 py-4 text-sm font-semibold uppercase tracking-[0.08em] transition hover:translate-y-[-1px] lg:inline-flex'
+            className='cta-primary hidden max-w-full items-center justify-between gap-4 rounded-[10px] px-8 py-4 text-left text-sm font-semibold uppercase tracking-[0.08em] transition hover:translate-y-[-1px] lg:inline-flex'
           >
-            {hero.cta}
+            <CtaLabel>{hero.cta}</CtaLabel>
           </TrackedLink>
         </ScrollReveal>
       </div>
@@ -58,9 +59,9 @@ export function HeroSection() {
             leadIntent
             trackingLabel={hero.cta}
             trackingLocation='hero_mobile'
-            className='cta-primary inline-flex max-w-full whitespace-normal rounded-[10px] px-6 py-5 text-sm font-semibold uppercase tracking-[0.08em] transition hover:translate-y-[-1px] sm:px-8 lg:hidden'
+            className='cta-primary inline-flex w-full max-w-full items-center justify-between gap-4 rounded-[10px] px-6 py-5 text-left text-sm font-semibold uppercase tracking-[0.08em] transition hover:translate-y-[-1px] sm:w-auto sm:px-8 lg:hidden'
           >
-            {hero.cta}
+            <CtaLabel>{hero.cta}</CtaLabel>
           </TrackedLink>
         </ScrollReveal>
       </div>

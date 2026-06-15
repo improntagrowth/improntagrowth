@@ -1,5 +1,6 @@
 import { TrackedLink } from "@/components/analytics";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { CtaLabel } from "@/components/landing/cta-label";
 import { proof } from "@/content/landing";
 
 function getYouTubeEmbedUrl(url: string) {
@@ -99,9 +100,9 @@ export function ProofSection() {
               eventName="cta_click"
               trackingLabel={proof.moreCta}
               trackingLocation="home_proof_more_results"
-              className="cta-primary inline-flex rounded-[10px] px-6 py-4 text-sm font-semibold uppercase tracking-[0.08em] transition hover:translate-y-[-1px]"
+              className="cta-primary inline-flex w-full items-center justify-between gap-4 rounded-[10px] px-6 py-4 text-left text-sm font-semibold uppercase tracking-[0.08em] transition hover:translate-y-[-1px] sm:w-auto sm:justify-center"
             >
-              {proof.moreCta}
+              <CtaLabel>{proof.moreCta}</CtaLabel>
             </TrackedLink>
           </div>
         </div>

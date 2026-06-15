@@ -1,5 +1,6 @@
 import { BrandMark } from "@/components/brand-mark";
 import { TrackedLink } from "@/components/analytics";
+import { CtaLabel } from "@/components/landing/cta-label";
 import { finalCta } from "@/content/landing";
 
 export function FinalCtaSection() {
@@ -33,9 +34,9 @@ export function FinalCtaSection() {
               leadIntent
               trackingLabel={finalCta.cta}
               trackingLocation="final_cta"
-              className="cta-primary inline-flex rounded-[10px] px-8 py-5 text-sm font-semibold uppercase tracking-[0.08em]"
+              className="cta-primary inline-flex w-full items-center justify-between gap-4 rounded-[10px] px-8 py-5 text-left text-sm font-semibold uppercase tracking-[0.08em] sm:w-auto sm:justify-center"
             >
-              {finalCta.cta}
+              <CtaLabel>{finalCta.cta}</CtaLabel>
             </TrackedLink>
           </div>
         </div>

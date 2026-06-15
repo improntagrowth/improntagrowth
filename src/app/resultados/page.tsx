@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowLeft, FileCheck2 } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { TrackPageEvent, TrackedLink } from '@/components/analytics'
 import { BrandMark } from '@/components/brand-mark'
+import { CtaLabel } from '@/components/landing/cta-label'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { SiteFooter } from '@/components/landing/site-footer'
 import { SiteHeader } from '@/components/landing/site-header'
@@ -62,12 +63,6 @@ export default function ResultadosPage() {
               de Impronta. La idea no es mostrar números sueltos, sino explicar
               de dónde partía cada cliente, qué se trabajó y qué evidencia
               existe.
-            </p>
-            <p className='border-l border-voltage pl-5 text-base leading-7 text-sage md:text-lg md:leading-8'>
-              Los videos están embebidos en esta página para que puedas ver cada
-              testimonio sin salir de la web. Los documentos/capturas quedan
-              como base de evidencia interna para seguir ampliando esta página
-              cuando el cliente apruebe el material final.
             </p>
           </ScrollReveal>
         </div>
@@ -136,9 +131,9 @@ export default function ResultadosPage() {
               leadIntent
               trackingLabel='Quiero agendar mi llamada'
               trackingLocation='results_final_cta'
-              className='cta-primary inline-flex rounded-[10px] px-8 py-5 text-sm font-semibold uppercase tracking-[0.08em]'
+              className='cta-primary inline-flex w-full items-center justify-between gap-4 rounded-[10px] px-8 py-5 text-left text-sm font-semibold uppercase tracking-[0.08em] sm:w-auto sm:justify-center'
             >
-              Quiero agendar mi llamada →
+              <CtaLabel>Quiero agendar mi llamada →</CtaLabel>
             </TrackedLink>
           </div>
         </div>

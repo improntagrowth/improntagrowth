@@ -10,14 +10,6 @@ export const hero = {
   pillars: ["Oferta clara", "Clientes correctos", "Sistema de ventas"],
 };
 
-export const vsl = {
-  label: "VSL",
-  status: "Video en edición",
-  title: "Mirá el video antes de aplicar",
-  description:
-    "Placeholder temporal hasta recibir el VSL final. No vamos a medir reproducciones reales hasta tener el embed definitivo.",
-};
-
 export const problem = {
   label: "El problema",
   title: "Tu agenda puede estar llena y tu negocio, igual, tener un techo.",
@@ -238,6 +230,4 @@ export const agenda = {
     "Te decimos con honestidad si Impronta puede ayudarte o si todavía no es el momento.",
   ],
   calendarTitle: "Seleccioná tu horario",
-  calendarDescription:
-    "El calendario real queda listo para conectar cuando el cliente confirme la herramienta final.",
 };
