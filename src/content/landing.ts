@@ -103,7 +103,7 @@ export const method = {
 export const proof = {
   title: "Resultados documentados, no promesas en el aire.",
   description:
-    "Tres casos reales para mostrar distintos puntos de partida: audiencia grande sin sistema, marca personal submonetizada y primera venta digital.",
+    "Casos reales de expertos que ordenaron su oferta, mejoraron su sistema comercial y escalaron con más claridad.",
   cases: [
     {
       name: "Jime Frontera",
@@ -120,12 +120,12 @@ export const proof = {
     {
       name: "Nacho · Vivir Liviano",
       niche: "Vínculos conscientes",
-      result: "US$32K en lanzamiento y luego US$8K/mes predecibles",
+      result: "De sesiones 1:1 a generar US$32K",
       quote:
         "Sentirme tranquilo, acompañado y saber que estaba con alguien que sabe fue de las cosas más lindas del proceso.",
       context:
-        "Tenía más de 200.000 seguidores, pero seguía limitado por sesiones uno a uno y no tenía un sistema para rentabilizar su audiencia.",
-      evidence: "Video testimonial + caso documentado + evidencias del lanzamiento",
+        "No tenía un sistema de contenido claro, seguía limitado por sesiones uno a uno y no sabía cómo rentabilizar su comunidad.",
+      evidence: "Video testimonial + caso documentado + evidencias del proceso",
       videoUrl: "https://www.youtube.com/watch?v=yIzMZCFpts0",
       thumbnail: "https://img.youtube.com/vi/yIzMZCFpts0/hqdefault.jpg",
     },
@@ -142,14 +142,44 @@ export const proof = {
       thumbnail: "https://img.youtube.com/vi/lzGmHePoDeE/hqdefault.jpg",
     },
   ],
-  quickResults: [
-    "Fernan creía que nadie pagaría más de US$50 por su sesión: su lanzamiento hizo US$70.000.",
-    "Maestro Norberto tenía casi 2 millones de seguidores y poca conversión: US$27.000 en 45 días.",
-    "Leonor estaba saturada de sesiones 1 a 1: llegó a US$27.000 al mes con un modelo más libre.",
+  moreCases: [
+    {
+      name: "Fernan Makaroff",
+      handle: "@fernan.makaroff",
+      niche: "Autor y desarrollo personal",
+      image: "/clients/fernan-makaroff.png",
+      startingPoint:
+        "Creía que nadie pagaría más de US$50 por una sesión.",
+      result: "US$70.000 generados con una oferta mejor estructurada.",
+    },
+    {
+      name: "Maestro Norberto",
+      handle: "@maestronorberto",
+      niche: "Sexología y bienestar",
+      image: "/clients/maestro-norberto.png",
+      startingPoint:
+        "Tenía autoridad y contenido, pero necesitaba ordenar mejor la conversión.",
+      result: "US$27.000 generados en 45 días.",
+    },
+    {
+      name: "Leonor Pissanchi",
+      handle: "@leonor_ines_pissanchi",
+      niche: "Educación y psicoterapia",
+      image: "/clients/leonor-pissanchi.png",
+      startingPoint:
+        "Estaba saturada de sesiones uno a uno y necesitaba un modelo más libre.",
+      result: "US$27.000 al mes con un sistema más ordenado.",
+    },
+    {
+      name: "Angie de Viaje",
+      handle: "@angiedeviaje",
+      niche: "Travel & lifestyle",
+      image: "/clients/angie-deviaje.png",
+      startingPoint:
+        "Tenía una comunidad activa y necesitaba transformar atención en sistema.",
+      result: "Oferta, contenido y agenda alineados para vender con más claridad.",
+    },
   ],
-  note: "Cada caso se apoya en material documentado: entrevistas, capturas, documentos internos y recursos del proceso.",
-  cta: "Ver testimonio",
-  moreCta: "Ver más resultados documentados →",
 };
 
 export const support = {
