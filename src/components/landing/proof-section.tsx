@@ -70,10 +70,10 @@ export function ProofSection() {
         </div>
       </div>
 
-      <div className="grid gap-5 rounded-[28px] border border-mist bg-background/85 p-5 text-foreground shadow-[0_18px_70px_rgba(18,22,19,0.055)] sm:p-7 lg:p-8">
+      <div className="grid gap-4 text-foreground">
           <ScrollReveal>
             <div>
-                <p className="max-w-2xl text-2xl leading-tight tracking-[-0.045em] text-foreground md:text-4xl">
+                <p className="max-w-2xl text-2xl leading-tight tracking-[-0.045em] text-foreground md:text-3xl">
                 Perfiles distintos, el mismo foco: ordenar para crecer.
               </p>
             </div>

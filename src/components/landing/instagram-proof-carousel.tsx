@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type InstagramProofCase = {
   name: string;
@@ -18,13 +17,55 @@ type InstagramProofCarouselProps = {
 
 export function InstagramProofCarousel({ cases }: InstagramProofCarouselProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const activeIndexRef = useRef(0);
+  const [maxIndex, setMaxIndex] = useState(Math.max(0, cases.length - 1));
+
+  const scrollToIndex = useCallback((index: number) => {
+    const carousel = carouselRef.current;
+    const cards = carousel?.querySelectorAll<HTMLElement>(
+      "[data-instagram-proof-card]",
+    );
+
+    if (!carousel || !cards?.length) {
+      return;
+    }
+
+    const firstCard = cards[0];
+    const nextIndex = Math.min(Math.max(index, 0), maxIndex);
+    const nextCard = cards[nextIndex];
+
+    if (!firstCard || !nextCard) {
+      return;
+    }
+
+    activeIndexRef.current = nextIndex;
+    carousel.scrollTo({
+      left: nextCard.offsetLeft - firstCard.offsetLeft,
+      behavior: "smooth",
+    });
+  }, [maxIndex]);
 
   useEffect(() => {
     const carousel = carouselRef.current;
 
     if (!carousel) {
       return;
+    }
+
+    function getVisibleCards() {
+      if (typeof window === "undefined") {
+        return 1;
+      }
+
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        return 3;
+      }
+
+      if (window.matchMedia("(min-width: 640px)").matches) {
+        return 2;
+      }
+
+      return 1;
     }
 
     function updateCurrentIndex() {
@@ -36,10 +77,22 @@ export function InstagramProofCarousel({ cases }: InstagramProofCarouselProps) {
         return;
       }
 
-      const gap = 16;
-      const cardWidth = firstCard.offsetWidth + gap;
-      const nextIndex = Math.round(carousel.scrollLeft / cardWidth);
-      setCurrentIndex(Math.min(Math.max(nextIndex, 0), cases.length - 1));
+      const cardOffsets = Array.from(
+        carousel.querySelectorAll<HTMLElement>("[data-instagram-proof-card]"),
+      ).map((card) => card.offsetLeft - firstCard.offsetLeft);
+      const nextMaxIndex = Math.max(0, cases.length - getVisibleCards());
+      const nextIndex = cardOffsets.reduce((nearestIndex, offset, index) => {
+        const nearestDistance = Math.abs(
+          carousel.scrollLeft - cardOffsets[nearestIndex],
+        );
+        const distance = Math.abs(carousel.scrollLeft - offset);
+
+        return distance < nearestDistance ? index : nearestIndex;
+      }, 0);
+      const clampedIndex = Math.min(Math.max(nextIndex, 0), nextMaxIndex);
+
+      setMaxIndex(nextMaxIndex);
+      activeIndexRef.current = clampedIndex;
     }
 
     updateCurrentIndex();
@@ -52,93 +105,61 @@ export function InstagramProofCarousel({ cases }: InstagramProofCarouselProps) {
     };
   }, [cases.length]);
 
-  function scrollToIndex(index: number) {
-    const carousel = carouselRef.current;
-    const firstCard = carousel?.querySelector<HTMLElement>(
-      "[data-instagram-proof-card]",
-    );
-
-    if (!carousel || !firstCard) {
+  useEffect(() => {
+    if (cases.length <= 1) {
       return;
     }
 
-    const nextIndex = Math.min(Math.max(index, 0), cases.length - 1);
-    carousel.scrollTo({
-      left: nextIndex * (firstCard.offsetWidth + 16),
-      behavior: "smooth",
-    });
-    setCurrentIndex(nextIndex);
-  }
+    const autoplay = window.setInterval(() => {
+      const nextIndex = activeIndexRef.current >= maxIndex ? 0 : activeIndexRef.current + 1;
+      scrollToIndex(nextIndex);
+    }, 3600);
+
+    return () => window.clearInterval(autoplay);
+  }, [cases.length, maxIndex, scrollToIndex]);
 
   return (
     <div className="relative grid gap-4">
       <div
         ref={carouselRef}
-        className="-mx-5 flex snap-x gap-4 overflow-x-auto px-5 pb-3 [scrollbar-width:none] sm:-mx-7 sm:px-7 md:mx-0 md:px-0 lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-2 pb-3 [scrollbar-width:none] sm:px-3 md:px-4 lg:px-6 lg:pb-0 [&::-webkit-scrollbar]:hidden"
       >
         {cases.map((item) => (
           <article
             key={item.handle}
             data-instagram-proof-card
-            className="relative min-w-[86vw] snap-start overflow-hidden rounded-[28px] border border-mist bg-[#070b0d] text-background shadow-[0_22px_80px_rgba(18,22,19,0.14)] sm:min-w-[390px] lg:min-w-[calc((100%-1rem)/2)]"
+            className="relative min-w-[72vw] snap-center rounded-[22px] bg-[#101714] p-2 text-background shadow-[0_18px_60px_rgba(18,22,19,0.16)] sm:min-w-[270px] lg:min-w-[280px] xl:min-w-[300px]"
           >
             <div className="relative">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={item.image}
                 alt={`Perfil de Instagram de ${item.name}`}
-                className="h-[570px] w-full object-cover object-top sm:h-[610px] lg:h-[min(760px,calc(100svh-120px))] lg:min-h-[640px]"
+                className="h-[305px] w-full rounded-[17px] border border-white/10 object-cover object-top sm:h-[330px] lg:h-[315px] xl:h-[335px]"
               />
-              <div className="absolute inset-x-0 bottom-0 h-[34%] bg-gradient-to-t from-[#070b0d] via-[#070b0d]/42 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-                <div className="grid gap-2 rounded-[20px] border border-white/10 bg-[#f7fff3] p-4 text-foreground shadow-[0_14px_50px_rgba(0,0,0,0.28)] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:gap-x-5 lg:p-5">
+            </div>
+
+            <div className="grid gap-3 pt-2">
+              <div className="grid gap-1 rounded-[15px] border border-white/10 bg-[#17211d] p-2.5 text-background">
                   <div>
-                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-sage">
+                    <p className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-background/48">
                       {item.handle}
                     </p>
-                    <h3 className="mt-1 font-serif text-[clamp(2rem,8vw,2.75rem)] leading-[0.92] tracking-[-0.06em] text-foreground lg:text-[clamp(2.25rem,3vw,3.15rem)]">
+                    <h3 className="mt-0.5 text-base font-semibold leading-tight tracking-[-0.04em] text-background">
                       {item.name}
                     </h3>
                   </div>
-                  <div className="grid gap-2">
-                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-sage">
-                      De dónde partía
-                    </p>
-                    <p className="text-sm leading-5 text-bark">
-                      {item.startingPoint}
-                    </p>
-                    <p className="pt-1 font-serif text-[clamp(1.85rem,7vw,2.6rem)] leading-[0.94] tracking-[-0.06em] text-foreground lg:text-[clamp(2rem,2.7vw,2.9rem)]">
-                      {item.result}
-                    </p>
-                  </div>
-                </div>
+                <p className="text-[0.72rem] leading-4 text-background/70">
+                  {item.startingPoint}
+                </p>
+                <p className="font-serif text-[clamp(1.22rem,4.2vw,1.58rem)] leading-[0.94] tracking-[-0.055em] text-background">
+                  {item.result}
+                </p>
               </div>
             </div>
           </article>
         ))}
       </div>
-
-      {currentIndex > 0 ? (
-        <button
-          type="button"
-          onClick={() => scrollToIndex(currentIndex - 1)}
-          className="absolute left-2 top-[285px] z-20 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-foreground/75 text-background shadow-[0_12px_36px_rgba(0,0,0,0.24)] backdrop-blur transition hover:bg-foreground sm:top-[305px] lg:top-1/2"
-          aria-label="Ver perfil anterior"
-        >
-          <ChevronLeft size={18} strokeWidth={2} aria-hidden="true" />
-        </button>
-      ) : null}
-
-      {currentIndex < cases.length - 1 ? (
-        <button
-          type="button"
-          onClick={() => scrollToIndex(currentIndex + 1)}
-          className="absolute right-2 top-[285px] z-20 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-foreground/75 text-background shadow-[0_12px_36px_rgba(0,0,0,0.24)] backdrop-blur transition hover:bg-foreground sm:top-[305px] lg:top-1/2"
-          aria-label="Ver siguiente perfil"
-        >
-          <ChevronRight size={18} strokeWidth={2} aria-hidden="true" />
-        </button>
-      ) : null}
     </div>
   );
 }

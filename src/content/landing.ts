@@ -147,7 +147,7 @@ export const proof = {
       name: "Fernan Makaroff",
       handle: "@fernan.makaroff",
       niche: "Autor y desarrollo personal",
-      image: "/clients/fernan-makaroff.png",
+      image: "/clients/fernan-makaroff.jpeg",
       startingPoint:
         "Creía que nadie pagaría más de US$50 por una sesión.",
       result: "US$70.000 generados con una oferta mejor estructurada.",
@@ -156,7 +156,7 @@ export const proof = {
       name: "Maestro Norberto",
       handle: "@maestronorberto",
       niche: "Sexología y bienestar",
-      image: "/clients/maestro-norberto.png",
+      image: "/clients/maestro-norberto.jpeg",
       startingPoint:
         "Tenía autoridad y contenido, pero necesitaba ordenar mejor la conversión.",
       result: "US$27.000 generados en 45 días.",
@@ -165,7 +165,7 @@ export const proof = {
       name: "Leonor Pissanchi",
       handle: "@leonor_ines_pissanchi",
       niche: "Educación y psicoterapia",
-      image: "/clients/leonor-pissanchi.png",
+      image: "/clients/leonor-pissanchi.jpeg",
       startingPoint:
         "Estaba saturada de sesiones uno a uno y necesitaba un modelo más libre.",
       result: "US$27.000 al mes con un sistema más ordenado.",
@@ -174,7 +174,7 @@ export const proof = {
       name: "Angie de Viaje",
       handle: "@angiedeviaje",
       niche: "Travel & lifestyle",
-      image: "/clients/angie-deviaje.png",
+      image: "/clients/angie-deviaje.jpeg",
       startingPoint:
         "Tenía una comunidad activa y necesitaba transformar atención en sistema.",
       result: "Oferta, contenido y agenda alineados para vender con más claridad.",
